@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../core/state/app_state.dart';
 
 class AiPage extends StatefulWidget {
   const AiPage({super.key});
@@ -11,14 +13,14 @@ class _AiPageState extends State<AiPage> {
   final TextEditingController _controller = TextEditingController();
   String _response = "";
 
-  void _generateResponse() {
-    setState(() {
-      _response = "AI response for: ${_controller.text}";
-    });
+  void _generateResponse(BuildContext context) {
+    final appState = context.read<AppState>();
+    appState.generateAiResponse(_controller.text);
   }
 
   @override
   Widget build(BuildContext context) {
+    final appState = context.watch<AppState>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('AI Feature'),
@@ -36,12 +38,12 @@ class _AiPageState extends State<AiPage> {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: _generateResponse,
+              onPressed: () => _generateResponse(context),
               child: const Text('Generate'),
             ),
             const SizedBox(height: 20),
             Text(
-              _response,
+              appState.aiResponse,
               style: const TextStyle(fontSize: 16),
             ),
           ],
