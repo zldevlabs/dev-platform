@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import '../services/counter_service.dart';
 
 class AppState extends ChangeNotifier {
-  int _counter = 0;
+  final CounterService _counterService = CounterService();
 
-  int get counter => _counter;
+  int get counter => _counterService.counter;
 
   void increment() {
-    _counter++;
+    _counterService.increment();
     notifyListeners();
   }
 }
