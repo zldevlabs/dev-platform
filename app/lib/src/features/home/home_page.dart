@@ -124,6 +124,13 @@ class HomePage extends StatelessWidget {
                                     ),
                                     label: const Text('Go to About'),
                                   ),
+                                  TextButton.icon(
+                                    onPressed: () {
+                                      Navigator.pushNamed(context, '/ai');
+                                    },
+                                    icon: const Icon(Icons.smart_toy_outlined),
+                                    label: const Text('AI Feature'),
+                                  ),
                                 ],
                               ),
                             ],

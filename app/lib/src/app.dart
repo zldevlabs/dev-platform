@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'core/state/app_state.dart';
 import 'features/home/home_page.dart';
 import 'features/about/about_page.dart';
+import 'features/ai/ai_page.dart';
 
 class DevPlatformApp extends StatelessWidget {
   const DevPlatformApp({super.key});
@@ -18,6 +19,7 @@ class DevPlatformApp extends StatelessWidget {
         routes: {
           '/': (context) => const HomePage(),
           '/about': (context) => const AboutPage(),
+          '/ai': (context) => AiPage(),
         },
       ),
     );
