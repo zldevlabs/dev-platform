@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../core/state/app_state.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  void _showSnackbar(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Hello from ZL Dev Labs')),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+    final appState = context.watch<AppState>();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('ZL Dev Labs'),
@@ -19,9 +17,16 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(
+              'Counter: ${appState.counter}',
+              style: const TextStyle(fontSize: 24),
+            ),
+            const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () => _showSnackbar(context),
-              child: const Text('Show Snackbar'),
+              onPressed: () {
+                appState.increment();
+              },
+              child: const Text('Increment'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
